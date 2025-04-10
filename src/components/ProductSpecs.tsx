@@ -13,14 +13,14 @@ interface SpecCardProps {
 const SpecCard = ({ icon, title, description, color, delay }: SpecCardProps) => {
   return (
     <div 
-      className="tech-spec-card group hover:scale-[1.03] transition-all duration-500 hover:shadow-xl overflow-hidden relative"
+      className="tech-spec-card group hover:scale-[1.03] transition-all duration-500 hover:shadow-xl dark:hover:shadow-emerald/10 overflow-hidden relative dark-neon-glow"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Neon glow effect */}
       <div className={`absolute inset-0 ${color.replace('bg-', 'bg-')} opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-500`}></div>
       
       {/* Glass effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-white/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
       
       <div className={`inline-flex p-3 rounded-lg mb-4 ${color} transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 relative`}>
         {/* Inner neon glow */}
@@ -33,9 +33,9 @@ const SpecCard = ({ icon, title, description, color, delay }: SpecCardProps) => 
         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald group-hover:w-1/2 transition-all duration-500"></span>
       </h3>
       
-      <p className="text-gray-600 text-sm">{description}</p>
+      <p className="text-gray-600 dark:text-gray-300 text-sm">{description}</p>
       
-      <div className="mt-4 flex items-center text-sm font-medium text-emerald group-hover:text-navy transition-colors">
+      <div className="mt-4 flex items-center text-sm font-medium text-emerald group-hover:text-navy dark:group-hover:text-emerald transition-colors">
         <span className="mr-1 group-hover:mr-2 transition-all duration-300">Learn more</span>
         <ChevronRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
       </div>
@@ -103,12 +103,12 @@ const ProductSpecs = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-navy/50 dark:to-navy/90 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-emerald/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-sapphire/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-gradient-to-br from-coral/5 to-magenta/5 rounded-full filter blur-xl"></div>
+        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-emerald/5 dark:bg-emerald/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-sapphire/5 dark:bg-sapphire/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-gradient-to-br from-coral/5 to-magenta/5 dark:from-coral/10 dark:to-magenta/10 rounded-full filter blur-xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -120,7 +120,7 @@ const ProductSpecs = () => {
             Cutting-Edge Specifications
             <span className="block w-20 h-1 bg-gradient-to-r from-emerald to-sapphire mx-auto mt-4"></span>
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto mb-10">
+          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10">
             Our eyewear combines the latest materials and technology to provide exceptional comfort, protection, and style.
           </p>
         </div>
@@ -145,9 +145,9 @@ const ProductSpecs = () => {
         </div>
 
         {/* Neon accent elements */}
-        <div className="absolute -bottom-10 left-1/4 w-40 h-40 rounded-full bg-cyan/30 filter blur-[100px] animate-pulse-slow"></div>
-        <div className="absolute top-20 right-20 w-20 h-20 rounded-full bg-yellow/20 filter blur-[50px] animate-pulse-slow" style={{ animationDelay: "1.5s" }}></div>
-        <div className="absolute bottom-40 left-10 w-24 h-24 rounded-full bg-coral/20 filter blur-[60px] animate-pulse-slow" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute -bottom-10 left-1/4 w-40 h-40 rounded-full bg-cyan/30 filter blur-[100px] animate-pulse-slow dark:bg-cyan/10"></div>
+        <div className="absolute top-20 right-20 w-20 h-20 rounded-full bg-yellow/20 filter blur-[50px] animate-pulse-slow dark:bg-yellow/10" style={{ animationDelay: "1.5s" }}></div>
+        <div className="absolute bottom-40 left-10 w-24 h-24 rounded-full bg-coral/20 filter blur-[60px] animate-pulse-slow dark:bg-coral/10" style={{ animationDelay: "1s" }}></div>
       </div>
     </section>
   );

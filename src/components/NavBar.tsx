@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import ThemeToggle from './ThemeToggle';
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ const NavBar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm py-2"
+          ? "bg-white/90 dark:bg-navy/90 backdrop-blur-md shadow-sm py-2"
           : "bg-transparent py-4"
       }`}
     >
@@ -68,31 +69,34 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="rounded-full p-2 hover:bg-navy/10 transition-all duration-300">
+            <ThemeToggle />
+            <Button variant="ghost" className="rounded-full p-2 hover:bg-navy/10 dark:hover:bg-white/10 transition-all duration-300">
               <ShoppingCart className="h-5 w-5" />
             </Button>
-            <Button className="bg-navy hover:bg-navy/90 hover:scale-105 transition-transform duration-300">
+            <Button className="bg-navy hover:bg-navy/90 hover:scale-105 transition-transform duration-300 dark:bg-emerald dark:hover:bg-emerald/90">
               Book Appointment
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation Toggle */}
-        <button
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="flex items-center space-x-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg p-4 space-y-3 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-navy/95 shadow-lg p-4 space-y-3 animate-fade-in backdrop-blur-md">
           <Link to="/" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
             Home
           </Link>
@@ -109,11 +113,11 @@ const NavBar = () => {
             Contact
           </Link>
           <div className="pt-3 flex flex-col space-y-3">
-            <Button variant="outline" className="flex items-center justify-center space-x-2">
+            <Button variant="outline" className="flex items-center justify-center space-x-2 dark:border-white/20 dark:bg-transparent">
               <ShoppingCart className="h-5 w-5" />
               <span>Cart</span>
             </Button>
-            <Button className="bg-navy hover:bg-navy/90">Book Appointment</Button>
+            <Button className="bg-navy hover:bg-navy/90 dark:bg-emerald dark:hover:bg-emerald/90">Book Appointment</Button>
           </div>
         </div>
       )}

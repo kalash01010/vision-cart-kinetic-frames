@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, ShoppingCart, Eye } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -33,37 +33,47 @@ const NavBar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
-          <Eye size={28} className="text-navy" />
-          <span className="text-2xl font-heading font-bold bg-gradient-to-r from-navy to-emerald bg-clip-text text-transparent">
-            Vision Cart
-          </span>
+          <div className="relative w-40 h-12 transition-all duration-300 hover:scale-105">
+            <img 
+              src="/lovable-uploads/eb67038f-3159-402e-8837-a96113293643.png" 
+              alt="Vision Cart Logo" 
+              className="object-contain w-full h-full"
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <div className="space-x-6">
-            <Link to="/" className="font-medium hover:text-emerald transition-colors">
+            <Link to="/" className="font-medium hover:text-emerald transition-colors relative group">
               Home
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to="/collection" className="font-medium hover:text-emerald transition-colors">
+            <Link to="/collection" className="font-medium hover:text-emerald transition-colors relative group">
               Collection
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to="/technology" className="font-medium hover:text-emerald transition-colors">
+            <Link to="/technology" className="font-medium hover:text-emerald transition-colors relative group">
               Technology
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to="/about" className="font-medium hover:text-emerald transition-colors">
+            <Link to="/about" className="font-medium hover:text-emerald transition-colors relative group">
               About Us
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to="/contact" className="font-medium hover:text-emerald transition-colors">
+            <Link to="/contact" className="font-medium hover:text-emerald transition-colors relative group">
               Contact
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
 
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="rounded-full p-2">
+            <Button variant="ghost" className="rounded-full p-2 hover:bg-navy/10 transition-all duration-300">
               <ShoppingCart className="h-5 w-5" />
             </Button>
-            <Button className="bg-navy hover:bg-navy/90">Book Appointment</Button>
+            <Button className="bg-navy hover:bg-navy/90 hover:scale-105 transition-transform duration-300">
+              Book Appointment
+            </Button>
           </div>
         </div>
 

@@ -1,0 +1,114 @@
+
+import React, { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import { Menu, X, ShoppingCart, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const NavBar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/90 backdrop-blur-md shadow-sm py-2"
+          : "bg-transparent py-4"
+      }`}
+    >
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Link to="/" className="flex items-center space-x-2">
+          <Eye size={28} className="text-navy" />
+          <span className="text-2xl font-heading font-bold bg-gradient-to-r from-navy to-emerald bg-clip-text text-transparent">
+            Vision Cart
+          </span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          <div className="space-x-6">
+            <Link to="/" className="font-medium hover:text-emerald transition-colors">
+              Home
+            </Link>
+            <Link to="/collection" className="font-medium hover:text-emerald transition-colors">
+              Collection
+            </Link>
+            <Link to="/technology" className="font-medium hover:text-emerald transition-colors">
+              Technology
+            </Link>
+            <Link to="/about" className="font-medium hover:text-emerald transition-colors">
+              About Us
+            </Link>
+            <Link to="/contact" className="font-medium hover:text-emerald transition-colors">
+              Contact
+            </Link>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost" className="rounded-full p-2">
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+            <Button className="bg-navy hover:bg-navy/90">Book Appointment</Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Toggle */}
+        <button
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg p-4 space-y-3 animate-fade-in">
+          <Link to="/" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Home
+          </Link>
+          <Link to="/collection" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Collection
+          </Link>
+          <Link to="/technology" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Technology
+          </Link>
+          <Link to="/about" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
+            About Us
+          </Link>
+          <Link to="/contact" className="block py-2 hover:text-emerald transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Contact
+          </Link>
+          <div className="pt-3 flex flex-col space-y-3">
+            <Button variant="outline" className="flex items-center justify-center space-x-2">
+              <ShoppingCart className="h-5 w-5" />
+              <span>Cart</span>
+            </Button>
+            <Button className="bg-navy hover:bg-navy/90">Book Appointment</Button>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default NavBar;

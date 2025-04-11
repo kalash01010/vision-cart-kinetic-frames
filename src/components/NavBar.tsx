@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart } from "lucide-react";
@@ -35,11 +34,7 @@ const NavBar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <div className="relative w-40 h-12 transition-all duration-300 hover:scale-105">
-            <img 
-              src="/lovable-uploads/eb67038f-3159-402e-8837-a96113293643.png" 
-              alt="Vision Cart Logo" 
-              className="object-contain w-full h-full"
-            />
+            <span className="text-xl font-bold text-navy dark:text-white">Vision Cart</span>
           </div>
         </Link>
 
